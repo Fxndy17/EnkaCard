@@ -175,7 +175,7 @@ class ENC:
                         task.append(self.generation(key,self.img,uid,signatureRes,template, r.player))
 
             result = await asyncio.gather(*task)
-            return sorting(result)
+            return result
         elif template == 6:
             return await self.teampleSix(enc,cards)
         else:
@@ -196,8 +196,8 @@ class ENC:
             result =  await generationTree(charter,self.assets,img,self.adapt,signatureRes,self.translateLang,self.splashArt)
         if self.save:
             await saveBanner(uid,result, charter.name)
-        return {"card": result}
-        #return {"uid": uid, "cards": {"name": charter.name, "card": result, "id": charter.id}} #NEW VERSION
+        #return {"card": result}
+        return {"uid": uid, "cards": {"name": charter.name, "card": result, "id": charter.id}} #NEW VERSION
 
     async def teampleSix(self,enc,cards):
         charterList = []
