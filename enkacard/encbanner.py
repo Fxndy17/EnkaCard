@@ -175,7 +175,7 @@ class ENC:
                         task.append(self.generation(key,self.img,uid,signatureRes,template, r.player))
 
             result = await asyncio.gather(*task)
-            return sorting(result)
+            return result
         elif template == 6:
             return await self.teampleSix(enc,cards)
         else:
