@@ -139,7 +139,7 @@ class ENC:
         else:
             self.img = None
 
-    async def creat(self, enc, template = 1, background = None, cards = None):
+    async def creat(self, enc, template = 7, background = None, cards = None):
         if not self.img and self.dopImg:
             self.img = await openUserImg(self.dopImg)
             self.randomImg = False
@@ -175,7 +175,7 @@ class ENC:
                         task.append(self.generation(key,self.img,uid,signatureRes,template, r.player))
 
             result = await asyncio.gather(*task)
-            return result
+            return sorting(result)
         elif template == 6:
             return await self.teampleSix(enc,cards)
         else:
@@ -196,7 +196,7 @@ class ENC:
             result =  await generationTree(charter,self.assets,img,self.adapt,signatureRes,self.translateLang,self.splashArt)
         if self.save:
             await saveBanner(uid,result, charter.name)
-        return {"uid": uid, "name": charter.name, "card": result, "id": charter.id}
+        return {"card": result}
         #return {"uid": uid, "cards": {"name": charter.name, "card": result, "id": charter.id}} #NEW VERSION
 
     async def teampleSix(self,enc,cards):
