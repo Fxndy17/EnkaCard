@@ -139,7 +139,7 @@ class ENC:
         else:
             self.img = None
 
-    async def creat(self, enc, template = 7, background = None, cards = None):
+    async def creat(self, enc, template = 1, background = None, cards = None):
         if not self.img and self.dopImg:
             self.img = await openUserImg(self.dopImg)
             self.randomImg = False
